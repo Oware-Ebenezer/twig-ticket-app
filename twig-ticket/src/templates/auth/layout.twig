@@ -1,0 +1,11 @@
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-card">
+    <h2 class="auth-title">{{ title }}</h2>
+    {% block form %}{% endblock %}
+  </div>
+  <footer class="auth-footer">
+    &copy; {{ "now"|date("Y") }} OKICKET. All rights reserved.
+  </footer>
+</section>
+{% endblock %}

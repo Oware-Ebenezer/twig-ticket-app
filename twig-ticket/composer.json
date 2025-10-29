@@ -1,0 +1,23 @@
+{
+    "name": "eben/twig-ticketapp",
+    "description": "Ticket management web app",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Eben\\TwigTicketapp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Oware-Ebenezer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "slim/slim": "4.15",
+        "slim/psr7": "1.7",
+        "twig/twig": "^3.21",
+        "slim/twig-view": "3.3"
+    }
+}
