@@ -3,7 +3,7 @@
         'name' => 'eben/twig-ticketapp',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '1e6dd53fafb8f21d121f89e68abc4fb1edb8db7d',
+        'reference' => '81e4a39a26f1ca34ef943dcf76ef27ef7c86a3d6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'eben/twig-ticketapp' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '1e6dd53fafb8f21d121f89e68abc4fb1edb8db7d',
+            'reference' => '81e4a39a26f1ca34ef943dcf76ef27ef7c86a3d6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
