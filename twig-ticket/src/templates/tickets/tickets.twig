@@ -1,0 +1,60 @@
+{% extends "base.twig" %}
+{% set title = "Ticket Management" %}
+
+{% block content %}
+<main class="max-w-[1440px] mx-auto px-4 py-8">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-bold text-gray-100">Ticket Management</h2>
+  </div>
+
+  {# --- Ticket Form Section --- #}
+  <section class="mb-6">
+    <h3 class="text-lg font-semibold mb-2">
+      {{ ticket.id is defined ? 'Edit Ticket' : 'Create Ticket' }}
+    </h3>
+
+    {# Include the reusable form #}
+    {% include "/tickets/tickets_form.twig" with {
+      action: ticket.id is defined ? '/tickets/' ~ ticket.id ~ '/update' : '/tickets/create',
+      ticket: ticket is defined ? ticket : {},
+      cancel_url: '/dashboard',
+      errors: errors is defined ? errors : {}
+    } %}
+  </section>
+
+  {# --- Ticket List Section --- #}
+  <section>
+    <h3 class="text-lg font-semibold mb-4 text-gray-100">All Tickets</h3>
+
+    {% if tickets is empty %}
+      <div
+        class="bg-[#0b1220]/80 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-white shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+      >
+        No tickets yet. Create one above.
+      </div>
+    {% else %}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {% for ticket in tickets %}
+          {% include "/tickets/tickets_card.twig" with {
+            ticket: ticket,
+            edit_url: '/tickets/' ~ ticket.id ~ '/edit',
+            delete_url: '/tickets/' ~ ticket.id ~ '/delete'
+          } %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if session.success %}
+  <div class="bg-green-600 text-white p-3 rounded mb-4">
+    {{ session.success }}
+  </div>
+{% endif %}
+{% if session.error %}
+  <div class="bg-red-600 text-white p-3 rounded mb-4">
+    {{ session.error }}
+  </div>
+{% endif %}
+
+  </section>
+</main>
+{% endblock %}

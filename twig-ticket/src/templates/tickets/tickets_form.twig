@@ -1,0 +1,102 @@
+{# ticket_form.twig #}
+
+<form
+  method="POST"
+  action="{{ action is defined ? action : '/tickets/create' }}"
+  class="bg-white backdrop-blur-sm border border-gray-400 rounded-2xl p-5 text-black shadow-md hover:shadow-lg transition-all duration-300"
+>
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {# --- Title Field --- #}
+    <section class="col-span-1">
+      <label class="block text-sm font-medium text-gray-600">Title</label>
+      <input
+        type="text"
+        name="title"
+        value="{{ ticket.title ?? '' }}"
+        placeholder="Short descriptive title"
+        class="mt-1 p-2 rounded border border-gray-400 focus:ring-2 outline-0 focus:ring-green-400 w-full"
+        required
+      />
+      {% if errors.title is defined %}
+        <p class="text-red-400 text-sm mt-1">{{ errors.title }}</p>
+      {% endif %}
+    </section>
+
+    {# --- Status Field --- #}
+    <section>
+      <label class="block text-sm font-medium text-gray-600">Status</label>
+      <select
+        name="status"
+        class="mt-1 p-2 rounded border border-gray-400 focus:ring-2 outline-0 focus:ring-green-400 w-full"
+      >
+        {% set status_options = ['open', 'in_progress', 'closed'] %}
+        {% for stat in status_options %}
+          <option value="{{ stat }}" {% if ticket.status is defined and ticket.status == stat %}selected{% endif %}>
+            {{ stat|replace({'_': ' '}) }}
+          </option>
+        {% endfor %}
+      </select>
+      {% if errors.status is defined %}
+        <p class="text-red-400 text-sm mt-1">{{ errors.status }}</p>
+      {% endif %}
+    </section>
+
+    {# --- Description Field --- #}
+    <section class="mt-4 col-span-2">
+      <label class="block text-sm font-medium text-gray-600">
+        Description (optional)
+      </label>
+      <textarea
+        name="description"
+        placeholder="More details (Write Something)"
+        class="mt-1 p-2 rounded border border-gray-400 focus:ring-2 outline-0 focus:ring-green-400 w-full min-h-[90px]"
+      >{{ ticket.description ?? '' }}</textarea>
+      {% if errors.description is defined %}
+        <p class="text-red-400 text-sm mt-1">{{ errors.description }}</p>
+      {% endif %}
+    </section>
+
+    {# --- Priority Field (optional but included for parity) --- #}
+    <section class="col-span-1">
+      <label class="block text-sm font-medium text-gray-600">Priority</label>
+      <select
+        name="priority"
+        class="mt-1 p-2 rounded border border-gray-400 focus:ring-2 outline-0 focus:ring-green-400 w-full"
+      >
+        {% set priority_options = ['low', 'normal', 'high'] %}
+        {% for p in priority_options %}
+          <option value="{{ p }}" {% if ticket.priority is defined and ticket.priority == p %}selected{% endif %}>
+            {{ p|capitalize }}
+          </option>
+        {% endfor %}
+      </select>
+    </section>
+
+    {# --- Buttons --- #}
+    <section class="flex items-center mt-4 gap-3 col-span-2">
+      <button
+        type="submit"
+        class="px-4 py-2 bg-[#06c122] text-white rounded hover:bg-[#05961b]"
+      >
+        Save
+      </button>
+
+      {% if cancel_url is defined %}
+        <a
+          href="{{ cancel_url }}"
+          class="px-4 py-2 bg-[#c11f06] text-white rounded hover:bg-[#a81805]"
+        >
+          Cancel
+        </a>
+      {% endif %}
+    </section>
+  </section>
+
+  {# --- Back to Dashboard Button --- #}
+  <a
+    href="/dashboard"
+    class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition-all"
+  >
+    ← Back to Dashboard
+  </a>
+</form>

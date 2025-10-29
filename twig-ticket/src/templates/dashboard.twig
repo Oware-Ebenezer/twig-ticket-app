@@ -1,0 +1,55 @@
+{% extends "base.twig" %}
+{% block content %}
+<main class="max-w-[1440px] mx-auto px-4 py-8">
+  <!-- HEADER -->
+  <section class="flex justify-between items-center mb-6">
+    <div>
+      <h1 class="text-2xl font-bold">Okicket Dashboard</h1>
+      <p class="text-sm text-[#94a3b8]">
+        Welcome back,
+        <span class="font-medium">
+          {{ user.name ?? user.email ?? 'Guest' }}
+        </span>
+      </p>
+    </div>
+
+    <div class="flex gap-3">
+      <a href="/tickets" class="px-3 py-2 border rounded">Manage Tickets</a>
+      <a href="/auth/logout" class="px-3 py-2 bg-red-600 text-white rounded">
+        Logout
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS GRID -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {% set cards = [
+      { title: 'Total Tickets', value: stats.total },
+      { title: 'Open', value: stats.open },
+      { title: 'In Progress', value: stats.in_progress },
+      { title: 'Closed', value: stats.closed }
+    ] %}
+
+    {% for card in cards %}
+      <div
+        class="
+          bg-[#0b1220]/80
+          backdrop-blur-sm
+          border border-white/10
+          rounded-2xl
+          p-5
+          text-white
+          shadow-md
+          hover:shadow-lg
+          transition-all
+          duration-300
+          hover:scale-[1.02]
+        "
+      >
+        <h4 class="text-sm text-[#94a3b8]">{{ card.title }}</h4>
+        <p class="text-2xl font-semibold mt-2">{{ card.value ?? 0 }}</p>
+      </div>
+    {% endfor %}
+  </section>
+</main>
+{% endblock %}

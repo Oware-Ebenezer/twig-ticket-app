@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title ?? 'Authentication' }}</title>
+    <link rel="stylesheet" href="/css/auth.css" />
+    {% block extra_styles %}{% endblock %}
+  </head>
+
+  <body>
+    {# Flash or session error message #}
+    {% if session.error %}
+      <div class="error-msg">{{ session.error }}</div>
+    {% endif %}
+
+    <section class="auth-container">
+      <div class="auth-card">
+        <h2 class="auth-title">{{ title ?? 'Welcome' }}</h2>
+        {% block content %}{% endblock %}
+      </div>
+
+      <footer class="auth-footer">
+        &copy; {{ "now"|date("Y") }} OKICKET. All rights reserved.
+      </footer>
+    </section>
+
+    {% block extra_scripts %}{% endblock %}
+  </body>
+</html>

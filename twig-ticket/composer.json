@@ -18,6 +18,7 @@
         "slim/slim": "4.15",
         "slim/psr7": "1.7",
         "twig/twig": "^3.21",
-        "slim/twig-view": "3.3"
+        "slim/twig-view": "3.3",
+        "php-di/php-di": "^7.1"
     }
 }

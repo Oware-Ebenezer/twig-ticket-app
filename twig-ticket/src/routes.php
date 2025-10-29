@@ -1,8 +1,8 @@
 <?php
 
 use Slim\Views\Twig;
-use Eben\TwigTicketApp\Controllers\AuthController;
-use Eben\TwigTicketApp\Controllers\TicketController;
+use Eben\TwigTicketapp\Controllers\AuthController;
+use Eben\TwigTicketapp\Controllers\TicketController;
 
 return function ($app) {
 
@@ -45,7 +45,7 @@ return function ($app) {
         }
 
         $view = Twig::fromRequest($request);
-        $ticketStore = new \Eben\TwigTicketApp\Utils\JsonStore(__DIR__ . '/public/tickets.json');
+        $ticketStore = new \Eben\TwigTicketapp\Utils\JsonStore(__DIR__ . '/public/tickets.json');
         $tickets = $ticketStore->getAll();
 
         $stats = [
@@ -75,4 +75,3 @@ return function ($app) {
     $app->post('/tickets/{id}/update', [TicketController::class, 'update']); // Handle update
     $app->get('/tickets/{id}/delete', [TicketController::class, 'delete']);  // Delete ticket
 };
-

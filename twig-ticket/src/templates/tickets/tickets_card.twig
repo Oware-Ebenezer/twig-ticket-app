@@ -1,0 +1,51 @@
+{# ticket_card.twig #}
+
+<article
+  class="bg-white backdrop-blur-sm border border-b-gray-400 rounded-2xl p-5 text-black shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+>
+  <section>
+    <h3 class="text-lg font-semibold text-gray-600">{{ ticket.title }}</h3>
+    <p class="text-sm text-[#94a3b8] mt-2">{{ ticket.description }}</p>
+  </section>
+
+  <section class="mt-4 flex items-center justify-between">
+    {# Ticket Status Tag with conditional color #}
+    <span
+      class="
+        px-3 py-1 rounded-full text-xs
+        {% if ticket.status == 'open' %}
+          bg-green-100 text-[#22c55e]
+        {% elseif ticket.status == 'in_progress' %}
+          bg-amber-100 text-[#f59e0b]
+        {% else %}
+          bg-gray-100 text-[#9ca3af]
+        {% endif %}
+      "
+    >
+      {{ ticket.status|replace({'_': ' '}) }}
+    </span>
+
+    {# Action Buttons #}
+    <section class="flex items-center gap-2">
+      <form method="GET" action="/tickets/{{ ticket.id }}/edit">
+        <button
+          type="submit"
+          class="text-sm px-2 py-1 border rounded-md hover:bg-gray-50"
+          aria-label="Edit {{ ticket.title }}"
+        >
+          Edit
+        </button>
+      </form>
+
+      <form method="GET" action="/tickets/{{ ticket.id }}/delete" onsubmit="return confirm('Are you sure you want to delete this ticket?')">
+        <button
+          type="submit"
+          class="text-sm px-2 py-1 border rounded-md hover:bg-gray-50 text-red-600"
+          aria-label="Delete {{ ticket.title }}"
+        >
+          Delete
+        </button>
+      </form>
+    </section>
+  </section>
+</article>

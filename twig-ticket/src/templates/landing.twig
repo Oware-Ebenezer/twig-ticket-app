@@ -1,0 +1,106 @@
+
+{% set title = "Welcome to OKICKET" %}
+
+{% block extra_styles %}
+<script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{% block content %}
+<main class="min-h-screen flex flex-col bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white font-[Poppins]">
+
+  {# Navbar #}
+  <header class="sticky top-0 bg-[#0b1220]/80 backdrop-blur-sm border-b border-white/10 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-extrabold tracking-wide text-indigo-400">OKICKET</h1>
+
+      <nav class="hidden md:flex gap-6 items-center">
+        <a href="/auth/login" class="text-sm text-gray-300 hover:text-indigo-400 transition">Login</a>
+        <a href="/auth/signup"
+           class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+          Get Started
+        </a>
+      </nav>
+
+      {# Hamburger Menu (Mobile) #}
+      <button id="nav-toggle" class="flex flex-col gap-[5px] md:hidden focus:outline-none">
+        <span class="w-6 h-[2px] bg-white block"></span>
+        <span class="w-6 h-[2px] bg-white block"></span>
+        <span class="w-6 h-[2px] bg-white block"></span>
+      </button>
+    </div>
+
+    {# Mobile Dropdown #}
+    <div id="mobile-menu" class="hidden flex-col bg-[#0b1220] border-t border-white/10 px-6 py-4 md:hidden">
+      <a href="/auth/login" class="text-gray-300 hover:text-indigo-400 py-2 block">Login</a>
+      <a href="/auth/signup" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-center mt-2 block">Get Started</a>
+    </div>
+  </header>
+
+  {# Hero Section #}
+  <section class="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute -top-20 -left-20 w-72 h-72 bg-indigo-600/30 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-72 h-72 bg-orange-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-2xl">
+       <h1 class="text-amber-600 text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+        OKICKET
+      </h1>
+      <h3 class="text-2xl md:text-6xl font-bold mb-4 leading-tight ">
+        Simplify Your <span class="text-indigo-400">Ticket Management</span>
+      </h3>
+      <p class="text-gray-400 text-base md:text-lg mb-8">
+        Manage, track, and resolve tickets differently with a sleek and secure web app.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/auth/signup"
+           class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-semibold text-sm md:text-base shadow-md transition-all duration-300">
+          Get Started
+        </a>
+        <a href="/auth/login"
+           class="border border-indigo-500 text-indigo-300 hover:bg-indigo-600/20 px-6 py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
+          Login
+        </a>
+      </div>
+    </div>
+
+    <img src="/public/wave.svg" alt="Wavy background"
+         class="absolute bottom-0 left-0 w-full opacity-40 select-none pointer-events-none" />
+  </section>
+
+  {# Features Section #}
+  <section class="py-20 bg-[#0b1220]/60 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-6">
+      <div class="p-6 border border-white/10 bg-white/5 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] text-center">
+        <h3 class="text-xl font-semibold text-indigo-400 mb-2">Create Tickets</h3>
+        <p class="text-gray-400 text-sm">Easily create and submit tickets for any issues or requests.</p>
+      </div>
+
+      <div class="p-6 border border-white/10 bg-white/5 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] text-center">
+        <h3 class="text-xl font-semibold text-indigo-400 mb-2">Track Progress</h3>
+        <p class="text-gray-400 text-sm">Monitor open, in-progress, and resolved tickets in real time.</p>
+      </div>
+
+      <div class="p-6 border border-white/10 bg-white/5 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] text-center">
+        <h3 class="text-xl font-semibold text-indigo-400 mb-2">Stay Notified</h3>
+        <p class="text-gray-400 text-sm">Receive instant updates on ticket status changes.</p>
+      </div>
+    </div>
+  </section>
+
+  {# Footer #}
+  <footer class="py-6 border-t border-white/10 text-center text-sm text-gray-500 bg-[#0b1220]/80">
+    © 2025 <span class="text-indigo-400 font-semibold">OKICKET</span>. All rights reserved.
+  </footer>
+</main>
+
+<script>
+  const toggleBtn = document.getElementById("nav-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  toggleBtn?.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+{% endblock %}
